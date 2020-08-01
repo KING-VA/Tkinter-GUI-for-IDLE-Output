@@ -5,8 +5,14 @@ import time
 
 #Setting Up Frame
 root = tkinter.Tk()
+root.grid_propagate(False)
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
 text_box = tkinter.Text(root, state=tkinter.DISABLED)
-text_box.grid(row=0, column=0, columnspan=4)
+text_box.grid(row=0, column=0, sticky="nsew", padx=2, pady=2)
+scrollb = ttk.Scrollbar(root, command=text_box.yview)
+scrollb.grid(row=0, column=1, sticky='nsew')
+text_box['yscrollcommand'] = scrollb.set
 
 #Creating Functions
 def write(string):
